@@ -14,13 +14,10 @@ window.WORKSHOP = {
     },
     {
       type: "profile", label: "MEET YOUR INSTRUCTOR", title: "許凱琳老師",
-      brands: ["gemini"],
-      lead: "自然教師，也是把數位工具真正帶進課堂的實踐者。",
       cards: [
-        {icon:"🏆", title:"教學實踐", text:"特殊優良教師、Super 教師獎、數位學習推動優良案例。"},
-        {icon:"🎓", title:"專業推動", text:"教育部 A1、B3、B5-1 合格講師，Gemini 認證講師、Apple Learning Coach。"}
+        {icon:"🏆", title:"教學實踐", text:"115 年特殊優良教師、112 年 Super 教師獎、數位學習推動優良案例。"},
+        {icon:"🎓", title:"專業推動", text:"教育部 A1、B3、B5-1 合格講師，Gemini 認證講師、Apple Professional Learning Specialist。"}
       ],
-      action: {label:"查看講師介紹", dialog:"bioDialog"},
       notes: "簡短建立講師背景，重點放在教學實踐，不需逐條念完經歷。"
     },
     {

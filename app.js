@@ -41,7 +41,7 @@
       return `<section class="slide cover${active}" data-title="${esc(slide.title)}"><div class="inner cover-grid"><div><p class="eyebrow">${esc(slide.label)}</p><h2>${esc(slide.title)}</h2><p class="cover-sub">${esc(slide.subtitle)}</p><div class="meta">${slide.meta.map(item => `<span>${esc(item)}</span>`).join('')}</div><div class="cover-footer"><p class="lead">${esc(data.meta.presenter)}</p><figure class="cover-qr"><img src="assets/cover-qrcode.png" alt="研習資源 QR Code"></figure></div></div><div class="guide g1 large-guide cover-guide" aria-hidden="true"></div></div></section>`;
     }
     if (slide.type === 'profile') {
-      return `<section class="slide${active}" data-title="${esc(slide.title)}"><div class="inner profile-grid"><div style="text-align:center"><img class="portrait" src="teacher.png" alt="許凱琳老師"></div><div>${header(slide)}<p class="lead">${esc(slide.lead)}</p>${cardGrid(slide.cards)}${action(slide.action)}</div></div>${guide(index)}</section>`;
+      return `<section class="slide${active}" data-title="${esc(slide.title)}"><div class="inner profile-grid"><div style="text-align:center"><img class="portrait" src="teacher.png" alt="許凱琳老師"></div><div>${header(slide)}${slide.lead ? `<p class="lead">${esc(slide.lead)}</p>` : ''}${cardGrid(slide.cards)}${action(slide.action)}</div></div><div class="guide g2 small-guide" aria-hidden="true"></div></section>`;
     }
     if (slide.type === 'chapter') {
       const chapterImage = slide.image ? `<figure class="chapter-image"><img src="${esc(slide.image)}" alt="${esc(slide.imageAlt || slide.title)}"></figure>` : '';
