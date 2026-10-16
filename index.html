@@ -2,49 +2,59 @@
 <html lang="zh-TW">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="許凱琳老師｜AI 神隊友：ChatGPT、Gemini 與 Gemini Notebook 的教學工作流，國小教師研習網頁簡報。">
-  <title>AI 神隊友｜ChatGPT、Gemini 與 Gemini Notebook 的教學工作流</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="許凱琳老師｜AI 神隊友：從真實任務出發，串起 ChatGPT、Gemini 與 Gemini Notebook 的教師工作流。">
+  <meta name="theme-color" content="#12304a">
+  <title>AI 神隊友｜教師的 AI 工作流實作</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?build=v38-profile-fix-7">
+  <link rel="stylesheet" href="styles.css?build=v2-taskflow-32">
 </head>
 <body>
+  <a class="skip-link" href="#deck">跳到簡報內容</a>
   <main class="deck" id="deck" aria-live="polite"></main>
 
   <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
-  <div class="topbar">
-    <button data-open="tocDialog">目錄</button>
-    <button id="notesToggle" aria-pressed="false">講者備註</button>
-    <button id="fullscreen">全螢幕</button>
-  </div>
+
+  <header class="topbar" aria-label="簡報工具">
+    <button class="utility resource-button" data-resource="notes"><span aria-hidden="true">📘</span><span class="button-label">操作筆記</span></button>
+    <button class="utility resource-button" data-resource="padlet"><span aria-hidden="true">🧩</span><span class="button-label">Padlet</span></button>
+    <button class="utility" data-open="tocDialog"><span aria-hidden="true">☰</span><span class="button-label">目錄</span></button>
+    <button class="utility" id="notesToggle" aria-pressed="false"><span aria-hidden="true">🎤</span><span class="button-label">講者備註</span></button>
+    <button class="utility" id="fullscreen"><span aria-hidden="true">⛶</span><span class="button-label">全螢幕</span></button>
+  </header>
+
   <nav class="nav" aria-label="簡報導覽">
     <button id="prevBtn" aria-label="上一頁">←</button>
-    <span class="counter" id="counter">01 / 38</span>
+    <span class="counter" id="counter">01 / 32</span>
     <button id="nextBtn" aria-label="下一頁">→</button>
   </nav>
 
   <aside class="speaker-notes" id="speakerNotes" aria-label="講者備註" hidden>
-    <div class="speaker-notes-head"><strong>講者備註</strong><button id="notesClose" aria-label="關閉講者備註">×</button></div>
+    <div class="speaker-notes-head">
+      <strong>講者備註</strong>
+      <button id="notesClose" aria-label="關閉講者備註">×</button>
+    </div>
     <p id="notesText"></p>
   </aside>
 
   <dialog id="tocDialog">
-    <div class="dialog-head"><h2>投影片目錄</h2><button data-close>關閉</button></div>
+    <div class="dialog-head"><div><span>WORKSHOP MAP</span><h2>投影片目錄</h2></div><button data-close>關閉</button></div>
     <div class="dialog-body"><div class="toc" id="toc"></div></div>
   </dialog>
 
-  <dialog id="bioDialog">
-    <div class="dialog-head"><h2>講師介紹</h2><button data-close>關閉</button></div>
-    <div class="dialog-body bio-copy">
-      <p><strong>許凱琳老師</strong><br>新北市大豐國小自然教師</p>
-      <p>新北市特殊優良教師、Super 教師獎、數位學習推動優良案例；教育部 A1、B3、B5-1 合格講師，Gemini 認證講師、Apple Learning Coach。</p>
+  <dialog id="promptDialog">
+    <div class="dialog-head"><div><span>PROMPT</span><h2 id="promptTitle">提示詞</h2></div><button data-close>關閉</button></div>
+    <div class="dialog-body prompt-body">
+      <p id="promptContext"></p>
+      <pre id="promptText"></pre>
+      <button class="btn copy-dialog" id="copyPrompt">複製完整提示詞</button>
     </div>
   </dialog>
 
   <div class="status" id="status" role="status" aria-live="polite"></div>
-  <script src="slides-data.js?build=v38-profile-fix-7"></script>
-  <script src="app.js?build=v38-profile-fix-7"></script>
+  <script src="slides-data.js?build=v2-taskflow-32"></script>
+  <script src="app.js?build=v2-taskflow-32"></script>
 </body>
 </html>
