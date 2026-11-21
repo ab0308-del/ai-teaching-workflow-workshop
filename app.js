@@ -27,7 +27,7 @@
   };
   const flow = (items, n = 4) => `<div class="flow flow-${n}">${items.map((item, index) => `<article class="flow-step"><b>${index + 1}</b><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p></article>`).join('')}</div>`;
   const character = (index, large = false) => `<div class="guide g${index % 4 + 1} ${large ? 'large-guide' : 'small-guide'} ${index % 3 === 1 ? 'left' : ''}" aria-hidden="true"></div>`;
-  const slideShell = (slide, index, body, extra = '') => `<section class="slide${index === 0 ? ' active' : ''}" data-title="${esc(slide.title)}" data-tone="${esc(slide.tone || 'paper')}"><div class="inner ${extra}">${body}</div>${character(index)}</section>`;
+  const slideShell = (slide, index, body, extra = '') => `<section class="slide${index === 0 ? ' active' : ''}" data-title="${esc(slide.title)}" data-tone="${esc(slide.tone || 'paper')}"><div class="inner ${extra}">${body}</div>${slide.type === 'vote' ? '' : character(index)}</section>`;
 
   function renderSlide(slide, index) {
     if (slide.type === 'cover') {

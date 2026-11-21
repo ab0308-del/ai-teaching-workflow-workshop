@@ -73,10 +73,9 @@ dialog{width:min(960px,92vw);max-height:88vh;margin:auto;border:0;border-radius:
 .toolpick-card h3{font-size:clamp(26px,2.4vw,36px);color:var(--navy);margin:16px 0 8px}.toolpick-card p{color:var(--muted);font-size:clamp(16px,1.3vw,20px)}
 .brand-mark.big{width:72px;height:62px;background-size:298px 62px;margin:0 auto}.brand-mark.big.brand-gemini{background-position-x:-104px}.brand-mark.big.brand-notebook{background-position-x:-208px}
 .solo-image{margin:6px 0 0;background:#fff;border:1px solid var(--line);border-radius:24px;padding:12px;box-shadow:var(--shadow);display:grid;place-items:center}
-.solo-image img{display:block;max-width:100%;max-height:calc(100dvh - 300px);object-fit:contain;border-radius:14px}
+.solo-image img{display:block;max-width:100%;max-height:calc(100dvh - 330px);object-fit:contain;border-radius:14px}
 .quote-wrap{max-width:980px}.quote-wrap blockquote{position:relative;margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:28px;padding:44px 48px 40px 92px;font-size:clamp(24px,2.4vw,36px);font-weight:700;line-height:1.6;color:var(--navy);box-shadow:var(--shadow)}
 .quote-wrap blockquote span{position:absolute;left:28px;top:8px;font-size:110px;line-height:1;color:var(--cyan);font-family:Georgia,serif}
-.slide:has(.vote-inner) .guide{display:none}
 .vote-layout{display:grid;grid-template-columns:minmax(250px,.62fr) 1.38fr;gap:30px;align-items:center}
 .vote-side h2{font-size:clamp(30px,2.7vw,44px)}.vote-side .rule{margin:12px 0 14px}
 .vote-lead{font-size:clamp(15px,1.2vw,18px);color:var(--muted);line-height:1.6}
@@ -105,4 +104,14 @@ dialog{width:min(960px,92vw);max-height:88vh;margin:auto;border:0;border-radius:
 @media(max-width:1000px){.vote-layout{grid-template-columns:1fr}.qr{width:170px}.cols-5,.flow-5{grid-template-columns:repeat(3,1fr)}.toolpick-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){.vote-row{grid-template-columns:1fr auto;}.vr-bar{grid-column:1/-1;grid-row:2}.cols-5,.flow-3,.flow-5,.toolpick-grid{grid-template-columns:1fr}.quote-wrap blockquote{padding:34px 22px 26px 58px}.quote-wrap blockquote span{left:14px;font-size:80px}.solo-image img{max-height:none}}
 .vote-reason[hidden]{display:none}
-.guide{z-index:1}
+
+/* ===== 人物：保持原比例（572:687），依螢幕高度縮放，並在人物那一側預留空間，避免與內容重疊 ===== */
+:root{--sg-h:clamp(124px,18vh,210px);--sg-w:calc(var(--sg-h) * .833);--lg-h:clamp(250px,42vh,460px);--lg-w:calc(var(--lg-h) * .833)}
+.guide{z-index:3}
+.small-guide{width:var(--sg-w);height:var(--sg-h);right:20px;bottom:16px}
+.small-guide.left{right:auto;left:20px}
+.large-guide{width:var(--lg-w);height:var(--lg-h);right:18px;bottom:0;opacity:1}
+.slide:has(> .small-guide:not(.left)){padding-right:calc(var(--sg-w) * .8 + 44px)}
+.slide:has(> .small-guide.left){padding-left:calc(var(--sg-w) * .8 + 44px)}
+.slide:has(> .large-guide){padding-right:calc(var(--lg-w) * .85 + 40px)}
+@media(max-width:1000px){.guide{display:none}.slide:has(> .guide){padding-left:5vw;padding-right:5vw}}
