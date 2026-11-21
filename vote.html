@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#12304a">
+  <title>AI 神隊友｜你會選哪一種 AI？</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#102f49;--blue:#17698d;--cyan:#2aa8ae;--yellow:#f4c85b;--paper:#f4fafb;--ink:#15334b;--muted:#5c7180;--line:#cfe1e4;--font:'Noto Sans TC','Microsoft JhengHei',sans-serif}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font);background:var(--paper);color:var(--ink);min-height:100dvh}
+    button{font:inherit;cursor:pointer}
+    header{background:linear-gradient(135deg,#0e2940,#175d83 60%,#218e98);color:#fff;padding:22px 18px 26px}
+    header small{font-size:12px;font-weight:900;letter-spacing:.16em;color:#bcefe9}
+    header h1{font-size:25px;line-height:1.3;margin-top:6px}
+    header p{margin-top:8px;color:#e0f0f3;font-size:15px;line-height:1.6}
+    main{max-width:560px;margin:0 auto;padding:16px 16px 40px}
+    .dots{display:flex;gap:6px;justify-content:center;margin:2px 0 14px}
+    .dots i{width:22px;height:7px;border-radius:5px;background:#d5e4e8}.dots i.done{background:var(--cyan)}.dots i.now{background:var(--navy)}
+    .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 18px;box-shadow:0 14px 36px rgba(16,47,73,.1)}
+    .qno{font-size:13px;font-weight:900;color:var(--cyan);letter-spacing:.1em}
+    .scene{display:flex;gap:12px;align-items:center;margin-top:6px}
+    .scene span{font-size:40px}
+    .scene h2{font-size:27px;color:var(--navy);line-height:1.25}
+    .hint{color:var(--muted);font-size:15px;margin-top:6px}
+    .ask{margin:16px 0 10px;font-weight:800;color:var(--blue)}
+    .choices{display:flex;flex-direction:column;gap:10px}
+    .choice{display:flex;align-items:center;gap:12px;width:100%;border:2px solid var(--line);background:#fff;border-radius:16px;padding:14px 14px;text-align:left;font-size:19px;font-weight:800;color:var(--navy);min-height:62px;transition:transform .15s,border-color .15s}
+    .choice:active{transform:scale(.98)}
+    .choice .logo{width:36px;height:31px;flex:none;background:url('assets/official-ai-brand-logos.png') no-repeat;background-size:149px 31px}
+    .logo.chatgpt{background-position:0 0}.logo.gemini{background-position:-52px 0}.logo.notebook{background-position:-104px 0}
+    .choice[disabled]{cursor:default}
+    .choice.mine{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,#fff)}
+    .choice .mark{margin-left:auto;font-size:14px;color:var(--c)}
+    .result{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+    .result h3{font-size:15px;color:var(--muted);margin-bottom:8px}
+    .bar{display:grid;grid-template-columns:8.4em 1fr 3em;gap:8px;align-items:center;margin:7px 0;font-size:14px;font-weight:700}
+    .bar>span:first-child{white-space:nowrap}
+    .bar .track{display:block;height:16px;background:#edf3f5;border-radius:8px;overflow:hidden}
+    .bar .fill{display:block;height:100%;border-radius:8px;transition:width .5s ease}
+    .bar b{text-align:right;color:var(--navy)}
+    .nav{display:flex;gap:10px;margin-top:16px}
+    .btn{flex:1;border:0;border-radius:14px;padding:15px;font-weight:900;font-size:17px;background:var(--blue);color:#fff}
+    .btn.ghost{background:#fff;color:var(--blue);border:1px solid var(--line);flex:.6}
+    .btn[disabled]{opacity:.4}
+    .summary h2{font-size:24px;color:var(--navy)}.summary p{color:var(--muted);margin-top:6px;line-height:1.6}
+    .sum-row{margin-top:14px;padding-top:12px;border-top:1px solid #e3eef0}
+    .sum-row h4{font-size:16px;color:var(--navy);display:flex;justify-content:space-between;gap:8px}
+    .sum-row h4 small{color:var(--muted);font-weight:700}
+    .stack{display:flex;height:20px;border-radius:7px;overflow:hidden;background:#edf3f5;margin-top:6px}
+    .stack span{display:block;height:100%;transition:width .5s}
+    .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:14px;font-weight:700;margin-top:12px}.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:-1px}
+    .msg{margin-top:12px;font-size:14px;color:#a0442f;min-height:1em}
+    .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ec27e;margin-right:6px;animation:pulse 1.6s infinite}
+    @keyframes pulse{50%{opacity:.3}}
+    @media(prefers-reduced-motion:reduce){.live{animation:none}.fill,.stack span{transition:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <small>AI 神隊友｜即時投票</small>
+    <h1>這個工作，你會選哪一種 AI？</h1>
+    <p>共 10 個工作情境，每題點一下就送出，馬上看到大家的選擇。</p>
+  </header>
+  <main>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <section id="stage" aria-live="polite"></section>
+    <p class="msg" id="msg" role="status"></p>
+  </main>
+
+  <script src="vote-config.js?build=v3-union-1125"></script>
+  <script>
+  (() => {
+    const V = window.AI_VOTE;
+    const keys = Object.keys(V.tools);
+    const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const store = {
+      get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
+      set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+    };
+    const voterKey = `aivote-voter-${V.round}`, choiceKey = `aivote-choices-${V.round}`;
+    let voter = store.get(voterKey, null);
+    if (!voter) {
+      voter = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)).slice(0, 36);
+      store.set(voterKey, voter);
+    }
+    const choices = store.get(choiceKey, {});
+    let tallies = null, idx = V.scenarios.findIndex(s => !choices[s.id]);
+    if (idx < 0) idx = V.scenarios.length;
+    let timer = null, busy = false;
+    const stage = document.getElementById('stage'), msg = document.getElementById('msg');
+
+    function dots() {
+      document.getElementById('dots').innerHTML = V.scenarios.map((s, i) => `<i class="${choices[s.id] ? 'done' : ''}${i === idx ? ' now' : ''}"></i>`).join('');
+    }
+    function bars(id) {
+      const t = tallies?.result[id];
+      if (!t) return '<p class="hint">結果讀取中⋯</p>';
+      return keys.map(k => {
+        const pct = t.total ? Math.round(t[k] / t.total * 100) : 0;
+        return `<div class="bar"><span>${esc(V.tools[k].label)}</span><span class="track"><span class="fill" style="width:${pct}%;background:${V.tools[k].color}"></span></span><b>${pct}%</b></div>`;
+      }).join('') + `<p class="hint">目前共 ${t.total} 人作答</p>`;
+    }
+    function renderQuestion() {
+      const s = V.scenarios[idx];
+      const mine = choices[s.id];
+      stage.innerHTML = `<article class="card">
+        <p class="qno">情境 ${idx + 1} / ${V.scenarios.length}</p>
+        <div class="scene"><span aria-hidden="true">${esc(s.icon)}</span><h2>${esc(s.name)}</h2></div>
+        <p class="hint">${esc(s.hint)}</p>
+        <p class="ask">${mine ? '你的選擇：' : '你會找哪一位 AI 神隊友？'}</p>
+        <div class="choices">${keys.map(k => `<button class="choice${mine === k ? ' mine' : ''}" style="--c:${V.tools[k].color}" data-tool="${k}" ${mine ? 'disabled' : ''}><i class="logo ${k}" aria-hidden="true"></i>${esc(V.tools[k].label)}${mine === k ? '<span class="mark">✓ 已送出</span>' : ''}</button>`).join('')}</div>
+        ${mine ? `<div class="result"><h3><span class="live"></span>大家的選擇</h3><div data-bars>${bars(s.id)}</div></div>` : ''}
+        <div class="nav">
+          <button class="btn ghost" data-prev ${idx === 0 ? 'disabled' : ''}>← 上一題</button>
+          <button class="btn" data-next ${mine ? '' : 'disabled'}>${idx === V.scenarios.length - 1 ? '看全部結果' : '下一題 →'}</button>
+        </div>
+      </article>`;
+    }
+    function renderSummary() {
+      stage.innerHTML = `<article class="card summary">
+        <h2>🎉 完成了！</h2>
+        <p><span class="live"></span>以下是現場老師的即時結果。凱琳老師的選擇，請看大螢幕揭曉！</p>
+        <div class="legend">${keys.map(k => `<span><i style="background:${V.tools[k].color}"></i>${esc(V.tools[k].label)}</span>`).join('')}</div>
+        <div data-summary>${summaryRows()}</div>
+        <div class="nav"><button class="btn ghost" data-review>回頭看題目</button></div>
+      </article>`;
+    }
+    function summaryRows() {
+      return V.scenarios.map(s => {
+        const t = tallies?.result[s.id] || {total: 0};
+        const mine = choices[s.id] ? V.tools[choices[s.id]].label : '未作答';
+        const stack = t.total ? keys.map(k => `<span style="width:${t[k] / t.total * 100}%;background:${V.tools[k].color}"></span>`).join('') : '';
+        return `<div class="sum-row"><h4><span>${esc(s.icon)} ${esc(s.name)}</span><small>我：${esc(mine)}</small></h4><div class="stack">${stack}</div></div>`;
+      }).join('');
+    }
+    function render() { dots(); idx >= V.scenarios.length ? renderSummary() : renderQuestion(); }
+    function softUpdate() {
+      const b = stage.querySelector('[data-bars]');
+      if (b && idx < V.scenarios.length) b.innerHTML = bars(V.scenarios[idx].id);
+      const sm = stage.querySelector('[data-summary]');
+      if (sm) sm.innerHTML = summaryRows();
+    }
+    async function refresh() {
+      try { tallies = V.api.tally(await V.api.fetchVotes()); msg.textContent = ''; softUpdate(); }
+      catch { msg.textContent = '暫時連不上結果，網路恢復後會自動更新。'; }
+    }
+
+    stage.addEventListener('click', async e => {
+      const choice = e.target.closest('[data-tool]');
+      if (choice && !busy) {
+        const s = V.scenarios[idx];
+        if (choices[s.id]) return;
+        busy = true; msg.textContent = '送出中⋯';
+        try {
+          await V.api.addVote(s.id, choice.dataset.tool, voter);
+          choices[s.id] = choice.dataset.tool; store.set(choiceKey, choices);
+          msg.textContent = '';
+          render(); refresh();
+        } catch { msg.textContent = '送出失敗，請確認網路後再點一次。'; }
+        busy = false;
+        return;
+      }
+      if (e.target.closest('[data-next]')) { idx++; render(); window.scrollTo({top: 0, behavior: 'smooth'}); }
+      if (e.target.closest('[data-prev]')) { idx = Math.max(0, idx - 1); render(); }
+      if (e.target.closest('[data-review]')) { idx = 0; render(); }
+    });
+
+    render();
+    refresh();
+    timer = setInterval(refresh, 4000);
+  })();
+  </script>
+</body>
+</html>
