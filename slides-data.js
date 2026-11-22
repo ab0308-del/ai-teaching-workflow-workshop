@@ -1,6 +1,6 @@
 window.WORKSHOP = {
   meta: {
-    title: "AI 神隊友：常見 AI 工具的教學工作流",
+    title: "AI神隊友－常見AI工具的教學工作流",
     presenter: "新北市大豐國小　許凱琳老師",
     resources: {
       notes: "https://docs.google.com/document/d/1lUt_1LFjXOBi8iuQgjz9L6E-VibiuOAZLRCsHm7ASP8/edit?tab=t.0",
@@ -11,7 +11,8 @@ window.WORKSHOP = {
   slides: [
     {
       type: "cover", label: "AI TEACHING WORKFLOW", title: "AI 神隊友",
-      subtitle: "ChatGPT、Gemini 與 Gemini Notebook 的教學工作流",
+      subtitle: "常見 AI 工具的教學工作流",
+      event: {name: "115學年度新北市教師會精進研習", session: "第一場", time: "11/25（三）14:00～16:00"},
       tagline: "帶您無痛上手 AI 工具，把繁瑣工作一鍵搞定，神隊友上線，準時下班不是夢！",
       meta: ["ChatGPT", "Gemini", "Gemini Notebook"],
       actions: [
@@ -41,8 +42,8 @@ window.WORKSHOP = {
     },
     {
       type: "vote", mode: "live", tone: "paper", label: "OPENING QUESTION", title: "這個工作，你會選哪一種 AI？",
-      lead: "拿出手機掃描 QR Code，十個工作情境，各選一位最適合的 AI 神隊友。",
-      notes: "給 2～3 分鐘作答。結果會即時長出來；點任一個情境可以揭曉「凱琳老師的選擇」，也可按「全部揭曉」。建議先只揭曉一兩題，留下懸念，最後一頁回顧時再全部揭曉。"
+      lead: "十個工作情境，各選一位最適合的 AI 神隊友：直接在這頁點選，或用手機掃 QR Code 作答。",
+      notes: "給 2～3 分鐘作答。線上的老師可以直接在自己開啟的簡報這頁點選，也可以用手機掃 QR Code。結果會即時更新；點任一個情境可以揭曉「凱琳老師的選擇」，也可按「全部揭曉」。建議先只揭曉一兩題，留下懸念，最後一頁回顧時再全部揭曉。"
     },
     {
       type: "cards", tone: "paper", label: "TODAY'S MAP", title: "研習地圖",
@@ -138,10 +139,13 @@ window.WORKSHOP = {
       type: "split", tone: "chatgpt", label: "PROJECTS", title: "Projects：把工作留在同一空間",
       bullets: ["集中相關對話、檔案與專案指令。", "讓每次新對話沿用相同規則。", "適合會議整理、長期備課與行政任務。", "先做一個最常用的專案，再逐步擴充。"],
       image: "assets/user-06-project-folders.png", imageAlt: "ChatGPT Projects 專案清單",
-      promptTitle: "評語幫手｜專案指令",
-      promptContext: "新增專案「評語幫手」，把這段文字貼進專案指令。",
-      prompt: "你是一位擁有數十年經驗的國小導師，我會根據正向與溫暖的原則，並參考您提供的風格和字數限制，撰寫一份約120字，絕不超過150字的期末評語與具體建議，採用臺灣繁體中文，並力求用字精確。",
-      notes: "提醒老師測試時使用虛擬資料，不貼學生敏感資訊。Padlet 有「虛擬評語」檔可練習。"
+      prompts: [
+        {title:"會議紀錄幫手｜專案指令", context:"實作案例：新增專案「會議紀錄幫手」，把這段文字貼進專案指令；之後每次開會，開新對話貼上逐字稿或筆記即可。",
+         text:"你是學校會議紀錄的整理助手。我會提供會議逐字稿、錄音轉文字、照片或手寫筆記，請整理成：會議主題、日期與出席人員、討論重點、決議事項、待辦事項（含負責人與期限）及待確認問題。請勿自行補充未提到的內容，使用臺灣繁體中文，條列清楚。"},
+        {title:"評語幫手｜專案指令", context:"新增專案「評語幫手」，把這段文字貼進專案指令。",
+         text:"你是一位擁有數十年經驗的國小導師，我會根據正向與溫暖的原則，並參考您提供的風格和字數限制，撰寫一份約120字，絕不超過150字的期末評語與具體建議，採用臺灣繁體中文，並力求用字精確。"}
+      ],
+      notes: "實作案例以「會議紀錄幫手」為主：建專案、貼指令、貼一段逐字稿測試。延伸可再做「評語幫手」，提醒老師使用虛擬資料，Padlet 有「虛擬評語」檔可練習。"
     },
     {
       type: "cards", tone: "chatgpt", label: "IMAGE CREATION", title: "圖像生成服務教學理解",
@@ -197,7 +201,7 @@ window.WORKSHOP = {
         {icon:"🧠", title:"處理複雜任務", text:"可協助執行複雜工作，並支援掛接外部程式，如 Kahoot、Padlet、Google Workspace⋯。"},
         {icon:"🌐", title:"網頁開發與託管", text:"具備網頁製作功能，並提供 ChatGPT Sites 網頁空間供使用。"}
       ],
-      note: "對應投票題「運用 AI 直接幫你工作」：從聊天，走到讓 AI 動手完成。",
+      note: "從聊天，走到讓 AI 動手完成：這正是邁向 AI Agent 的第一步。",
       notes: "最新補充。可回扣第 4 頁投票結果中的「運用 AI 直接幫你工作」。"
     },
     {
@@ -408,6 +412,40 @@ window.WORKSHOP = {
       ],
       note: "工具名稱可能演進，但工作流中的角色可以保留。",
       notes: "請老師回想自己要帶走哪一條流程。"
+    },
+    {
+      type: "flow3", tone: "agent", label: "MY AI JOURNEY", title: "AI 演進得好快，我的用法也一路在變",
+      steps: [
+        {title:"① 聊天問答", text:"在網頁上問問題、請 AI 寫一段文字，再複製貼上回來用。"},
+        {title:"② 上傳資料一起做", text:"專案、Canvas、Gemini Notebook：把檔案上傳，讓 AI 依資料產出教材。"},
+        {title:"③ AI agent 在本機幫我做", text:"直接讀寫我電腦裡的檔案，從頭到尾把一件工作完成。"}
+      ],
+      note: "前面介紹的工具我還是天天在用；需要處理本機檔案的工作，現在多半交給 AI agent。",
+      notes: "說明自己的演進：從複製貼上，到上傳資料，到讓 AI agent 直接在電腦裡工作。可提到自己用的是 Claude Code 和 Codex。"
+    },
+    {
+      type: "agent", tone: "agent", label: "WHY AI AGENT", title: "AI agent：直接在我的電腦裡工作",
+      features: [
+        {icon:"📂", title:"檔案不用再上傳", text:"直接讀取電腦裡的教材、PDF、簡報與照片。"},
+        {icon:"🛠️", title:"一次完成多個步驟", text:"查資料、整理、做檔案、檢查，一路做到好。"},
+        {icon:"📝", title:"成果直接存回電腦", text:"產出 Word、簡報、網頁，放進指定的資料夾。"},
+        {icon:"🧑‍🏫", title:"我負責下指令與把關", text:"說清楚目標，最後由老師檢查、決定怎麼用。"}
+      ],
+      examples: ["這份網頁簡報與即時投票", "研習三件組：簡報、Padlet、操作筆記", "Keynote 簡報精簡與補插圖", "出題、試卷與教學筆記整理"],
+      notes: "分享實際用 AI agent 完成的工作。今天的網頁簡報、手機投票，就是請 AI agent 協助完成的。"
+    },
+    {
+      type: "nextSession", tone: "agent", label: "NEXT SESSION", title: "想更深入 AI agent？歡迎參加第二場",
+      session: {
+        name: "115學年度新北市教師會精進研習",
+        order: "第二場",
+        title: "您的AI好幫手－輕鬆解鎖AI Agent的神奇應用",
+        time: "12/2（三）14:00～16:00",
+        speaker: "張鉅輝老師",
+        pitch: "想雇個免錢的超級助理嗎？解鎖 AI Agent 的神奇魔法，讓它幫您處理各種教學疑難雜症！",
+        join: "線上 Meet 教室，代碼請見教師會 LINE 通知"
+      },
+      notes: "銜接第二場：今天介紹常見 AI 工具，下週由張鉅輝老師帶大家深入 AI agent。"
     },
     {
       type: "closing", tone: "hero", label: "YOUR NEXT MOVE", title: "帶走真正會再用的 AI 工作流",

@@ -31,7 +31,7 @@
 
   function renderSlide(slide, index) {
     if (slide.type === 'cover') {
-      return `<section class="slide cover active" data-title="${esc(slide.title)}" data-tone="hero"><div class="inner cover-grid"><div class="cover-copy"><p class="eyebrow">${esc(slide.label)}</p><h1>${esc(slide.title)}</h1><p class="cover-sub">${esc(slide.subtitle)}</p>${slide.tagline ? `<p class="cover-tagline">${esc(slide.tagline)}</p>` : ''}<div class="meta">${slide.meta.map(item => `<span>${esc(item)}</span>`).join('')}</div>${actions(slide.actions)}<p class="presenter">${esc(data.meta.presenter)}</p></div><div class="cover-visual"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><img src="teacher.png" alt="許凱琳老師"><span class="spark s1">✦</span><span class="spark s2">✦</span></div></div></section>`;
+      return `<section class="slide cover active" data-title="${esc(slide.title)}" data-tone="hero"><div class="inner cover-grid"><div class="cover-copy">${slide.event ? `<p class="cover-event"><span>${esc(slide.event.name)}</span><b>${esc(slide.event.session)}</b><time>${esc(slide.event.time)}</time></p>` : ''}<p class="eyebrow">${esc(slide.label)}</p><h1>${esc(slide.title)}</h1><p class="cover-sub">${esc(slide.subtitle)}</p>${slide.tagline ? `<p class="cover-tagline">${esc(slide.tagline)}</p>` : ''}<div class="meta">${slide.meta.map(item => `<span>${esc(item)}</span>`).join('')}</div>${actions(slide.actions)}<p class="presenter">${esc(data.meta.presenter)}</p></div><div class="cover-visual"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><img src="teacher.png" alt="許凱琳老師"><span class="spark s1">✦</span><span class="spark s2">✦</span></div></div></section>`;
     }
     if (slide.type === 'profile') {
       return slideShell(slide, index, `<div class="profile-grid"><figure class="portrait-wrap"><img class="portrait" src="teacher.png" alt="許凱琳老師"><figcaption>教學現場 × AI 協作</figcaption></figure><div>${header(slide)}<p class="lead">${esc(slide.lead)}</p>${cards(slide.cards)}</div></div>`);
@@ -42,6 +42,13 @@
     if (slide.type === 'vote') {
       const live = slide.mode === 'live';
       return slideShell(slide, index, `<div class="vote-layout ${live ? 'is-live' : 'is-recap'}"><div class="vote-side">${header({...slide, mode: ''})}<p class="vote-lead">${esc(slide.lead)}</p><div class="qr-box"><div class="qr" data-vote-qr></div><p class="qr-url" data-vote-url></p></div><p class="vote-count"><b data-vote-voters>0</b> 位老師已作答</p></div><div class="vote-main"><div class="vote-toolbar"><div class="vote-legend">${Object.entries(window.AI_VOTE.tools).map(([key, tool]) => `<span><i style="background:${tool.color}"></i>${esc(tool.label)}</span>`).join('')}</div><div class="vote-controls"><button class="btn small" data-vote-reveal-all>全部揭曉</button><button class="btn small secondary" data-vote-hide-all>收起答案</button></div></div><div class="vote-board" data-vote-board></div><div class="vote-reason" data-vote-reason hidden></div></div></div>`, 'wide vote-inner');
+    }
+    if (slide.type === 'agent') {
+      return slideShell(slide, index, `${header(slide)}<div class="agent-grid"><div class="cards cols-2">${slide.features.map(item => `<article class="card"><div class="icon">${esc(item.icon)}</div><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p></article>`).join('')}</div><aside class="agent-done"><span>我用 AI agent 做過</span><ul>${slide.examples.map(item => `<li>${esc(item)}</li>`).join('')}</ul></aside></div>`, 'wide');
+    }
+    if (slide.type === 'nextSession') {
+      const s = slide.session;
+      return slideShell(slide, index, `${header(slide)}<article class="next-card"><p class="next-tag"><span>${esc(s.name)}</span><b>${esc(s.order)}</b></p><h3>${esc(s.title)}</h3><p class="next-pitch">${esc(s.pitch)}</p><dl><div><dt>🗓️ 時間</dt><dd>${esc(s.time)}</dd></div><div><dt>🎤 講師</dt><dd>${esc(s.speaker)}</dd></div><div><dt>💻 地點</dt><dd>${esc(s.join)}</dd></div></dl></article>`, 'wide');
     }
     if (slide.type === 'toolPick') {
       return slideShell(slide, index, `${header(slide)}<div class="toolpick-grid">${slide.tools.map(item => `<article class="toolpick-card"><i class="brand-mark big brand-${esc(item.brand)}" aria-hidden="true"></i><h3>${esc(brandInfo[item.brand].label)}</h3><p>${esc(item.text)}</p></article>`).join('')}</div>${note(slide)}`, 'wide');
@@ -66,7 +73,7 @@
       const right = slide.image
         ? `<figure class="side-image-frame"><img src="${esc(slide.image)}" alt="${esc(slide.imageAlt || slide.title)}"></figure>`
         : `<article class="visual-card"><div class="visual-icon">${esc(slide.visual.icon)}</div><h3>${esc(slide.visual.title)}</h3><p>${esc(slide.visual.text)}</p></article>`;
-      return slideShell(slide, index, `<div class="split"><div>${header(slide)}<ul class="points">${slide.bullets.map(item => `<li>${esc(item)}</li>`).join('')}</ul>${promptButton(slide)}</div>${right}</div>`, 'wide');
+      return slideShell(slide, index, `<div class="split"><div>${header(slide)}<ul class="points">${slide.bullets.map(item => `<li>${esc(item)}</li>`).join('')}</ul><div class="action-row">${promptButton(slide)}${promptSet(slide)}</div></div>${right}</div>`, 'wide');
     }
     if (slide.type === 'screenshot') {
       return slideShell(slide, index, `<div class="media-layout"><figure class="media-frame"><img src="${esc(slide.image)}" alt="${esc(slide.imageAlt || slide.title)}"></figure><div>${header(slide)}${flow(slide.steps)}${promptButton(slide)}</div></div>`, 'wide');

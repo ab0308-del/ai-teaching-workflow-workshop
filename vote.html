@@ -32,6 +32,7 @@
     .choice:active{transform:scale(.98)}
     .choice .logo{width:36px;height:31px;flex:none;background:url('assets/official-ai-brand-logos.png') no-repeat;background-size:149px 31px}
     .logo.chatgpt{background-position:0 0}.logo.gemini{background-position:-52px 0}.logo.notebook{background-position:-104px 0}
+    .logo.other{background:#e7eef1;border-radius:8px;display:grid;place-items:center;font-style:normal;font-weight:900;color:#5c7180;font-size:18px}
     .choice[disabled]{cursor:default}
     .choice.mine{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,#fff)}
     .choice .mark{margin-left:auto;font-size:14px;color:var(--c)}
@@ -63,7 +64,7 @@
   <header>
     <small>AI 神隊友｜即時投票</small>
     <h1>這個工作，你會選哪一種 AI？</h1>
-    <p>共 10 個工作情境，每題點一下就送出，馬上看到大家的選擇。</p>
+    <p>共 10 個工作情境，每題點一下就送出（想不到適合的就選「其他」），馬上看到大家的選擇。</p>
   </header>
   <main>
     <div class="dots" id="dots" aria-hidden="true"></div>
@@ -71,7 +72,7 @@
     <p class="msg" id="msg" role="status"></p>
   </main>
 
-  <script src="vote-config.js?build=v4b-guide-fit"></script>
+  <script src="vote-config.js?build=v9b-answers"></script>
   <script>
   (() => {
     const V = window.AI_VOTE;
@@ -112,7 +113,7 @@
         <div class="scene"><span aria-hidden="true">${esc(s.icon)}</span><h2>${esc(s.name)}</h2></div>
         <p class="hint">${esc(s.hint)}</p>
         <p class="ask">${mine ? '你的選擇：' : '你會找哪一位 AI 神隊友？'}</p>
-        <div class="choices">${keys.map(k => `<button class="choice${mine === k ? ' mine' : ''}" style="--c:${V.tools[k].color}" data-tool="${k}" ${mine ? 'disabled' : ''}><i class="logo ${k}" aria-hidden="true"></i>${esc(V.tools[k].label)}${mine === k ? '<span class="mark">✓ 已送出</span>' : ''}</button>`).join('')}</div>
+        <div class="choices">${keys.map(k => `<button class="choice${mine === k ? ' mine' : ''}" style="--c:${V.tools[k].color}" data-tool="${k}" ${mine ? 'disabled' : ''}><i class="logo ${k}" aria-hidden="true">${k === 'other' ? '…' : ''}</i>${esc(V.tools[k].label)}${mine === k ? '<span class="mark">✓ 已送出</span>' : ''}</button>`).join('')}</div>
         ${mine ? `<div class="result"><h3><span class="live"></span>大家的選擇</h3><div data-bars>${bars(s.id)}</div></div>` : ''}
         <div class="nav">
           <button class="btn ghost" data-prev ${idx === 0 ? 'disabled' : ''}>← 上一題</button>

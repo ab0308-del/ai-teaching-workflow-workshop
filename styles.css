@@ -115,3 +115,60 @@ dialog{width:min(960px,92vw);max-height:88vh;margin:auto;border:0;border-radius:
 .slide:has(> .small-guide.left){padding-left:calc(var(--sg-w) * .8 + 44px)}
 .slide:has(> .large-guide){padding-right:calc(var(--lg-w) * .85 + 40px)}
 @media(max-width:1000px){.guide{display:none}.slide:has(> .guide){padding-left:5vw;padding-right:5vw}}
+
+/* ===== 1122 新增：封面研習資訊、AI agent 頁、第二場預告 ===== */
+.cover-event{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:18px;padding:8px 14px;border-radius:14px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);font-weight:800;font-size:clamp(15px,1.25vw,19px);color:#fff}
+.cover-event b{background:var(--yellow);color:var(--navy);border-radius:8px;padding:2px 9px}
+.cover-event time{color:#fff3cf}
+.agent-grid{display:grid;grid-template-columns:1.45fr .85fr;gap:22px;align-items:stretch;margin-top:20px}.agent-grid .cards{margin-top:0}
+.agent-done{background:linear-gradient(145deg,#133a58,#197d91);color:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center}
+.agent-done>span{font-size:14px;letter-spacing:.14em;font-weight:900;color:var(--yellow)}
+.agent-done ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.agent-done li{font-size:clamp(16px,1.35vw,20px);font-weight:700;line-height:1.5;display:flex;gap:10px}.agent-done li::before{content:"✓";color:var(--navy);background:var(--yellow);border-radius:7px;width:26px;height:26px;display:grid;place-items:center;flex:none;font-weight:900;margin-top:2px}
+.next-card{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px 34px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.next-card::before{content:"";position:absolute;inset:0 auto 0 0;width:10px;background:linear-gradient(var(--cyan),var(--yellow))}
+.next-tag{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;font-weight:800;color:var(--muted)}.next-tag b{background:var(--coral);color:#fff;border-radius:8px;padding:2px 10px}
+.next-card h3{font-size:clamp(26px,2.5vw,40px);color:var(--navy);margin-top:12px;line-height:1.3}
+.next-pitch{margin-top:12px;font-size:clamp(17px,1.45vw,22px);color:#6a5723;background:#fff7df;border-radius:12px;padding:10px 14px}
+.next-card dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:10px 36px;margin-top:18px}
+.next-card dt{font-size:14px;font-weight:900;color:var(--cyan);letter-spacing:.06em}.next-card dd{font-size:clamp(18px,1.5vw,23px);font-weight:800;color:var(--navy);margin-top:2px}
+@media(max-width:1000px){.agent-grid{grid-template-columns:1fr}.next-card dl{grid-template-columns:1fr}}
+@media(max-width:620px){.agent-grid .cards{grid-template-columns:1fr}.next-card{padding:24px 20px 24px 26px}}
+
+/* ===== 1122 投票看板改為直接點選：ChatGPT／Gemini／Gemini Notebook／其他 ===== */
+.vote-row{grid-template-columns:minmax(140px,12.5em) 1fr auto;gap:10px;padding:6px 8px 6px 12px;cursor:default}
+.vote-row:hover{transform:none;border-color:var(--line)}
+.vote-row.voted{border-color:#b9dcd6;background:#fbfefd}
+.vr-choices{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;min-width:0}
+.vc{position:relative;display:flex;align-items:center;gap:6px;min-width:0;height:34px;padding:0 8px;border-radius:10px;border:1.5px solid color-mix(in srgb,var(--c) 45%,#fff);background:linear-gradient(90deg,color-mix(in srgb,var(--c) 26%,#fff) var(--p),#fff var(--p));color:var(--navy);font-weight:800;font-size:13px;line-height:1;transition:border-color .15s,box-shadow .15s,background .5s}
+.vc:not([disabled]){cursor:pointer}
+.vc:not([disabled]):hover{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 18%,transparent)}
+.vc[disabled]{cursor:default}
+.vc.mine{border-color:var(--c);border-width:2.5px}
+.vc.is-pick{box-shadow:0 0 0 3px #f4c85b}
+.vc-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.vc-pct{margin-left:auto;font-size:13px;color:var(--navy)}
+.vc-mine{position:absolute;top:-7px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--c);color:#fff;font-size:11px;display:grid;place-items:center}
+.brand-mark.tiny{width:22px;height:19px;flex:none;background-size:91px 19px}.brand-mark.tiny.brand-chatgpt{background-position-x:0}.brand-mark.tiny.brand-gemini{background-position-x:-32px}.brand-mark.tiny.brand-notebook{background-position-x:-64px}
+.vc-icon{flex:none;width:22px;height:19px;display:grid;place-items:center;border-radius:6px;background:#e7eef1;color:#5c7180;font-style:normal;font-weight:900;font-size:13px}
+.vr-pick{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#93a6b1;white-space:nowrap;padding:6px 8px;border-radius:999px;min-width:6.4em;cursor:pointer}
+.vr-pick:hover{color:var(--blue)}
+.vote-row.open .vr-pick{color:#fff;background:var(--pick);font-size:14px}
+@media(max-width:1280px){.vote-row{grid-template-columns:minmax(120px,10.5em) 1fr auto}.vc-label{display:none}.vc{justify-content:flex-start}}
+@media(max-width:620px){.vote-row{grid-template-columns:1fr auto}.vr-choices{grid-column:1/-1;grid-row:2}.vc-label{display:inline}}
+.vote-layout{grid-template-columns:minmax(230px,.5fr) 1.5fr;gap:26px}
+.vote-row{grid-template-columns:minmax(130px,11em) 1fr auto;gap:8px}
+.vc{gap:4px;padding:0 6px}
+.vr-pick{min-width:5.6em;padding:6px 6px}
+@media(max-width:1280px){.vote-row{grid-template-columns:minmax(120px,10.5em) 1fr auto}}
+@media(max-width:1000px){.vote-layout{grid-template-columns:1fr}}
+/* 揭曉說明：浮在被點的那一列上方或下方，不推動版面 */
+.vote-main{position:relative}
+.vote-reason{position:absolute;left:0;right:0;z-index:5;margin-top:0;box-shadow:0 16px 40px rgba(16,47,73,.22)}
+@media(max-height:820px) and (min-width:1001px){.vote-board{gap:5px}.vote-row{padding:4px 8px 4px 12px}.vc{height:30px}.vote-toolbar{margin-bottom:6px}.vote-legend{font-size:15px}.btn.small{padding:6px 11px}}
+.vr-pick,.vote-row.open .vr-pick{width:7.2em;min-width:0;text-align:center;font-size:13px;overflow:hidden;text-overflow:ellipsis}
+.vr-pick,.vote-row.open .vr-pick{width:8em}
+.vote-row{grid-template-columns:minmax(128px,10.4em) 1fr auto}
+.vc.mine{border-width:1.5px;border-color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c)}
+.vc.mine.is-pick{box-shadow:inset 0 0 0 1.5px var(--c),0 0 0 3px #f4c85b}
+.vr-name{white-space:normal;line-height:1.25;overflow:visible}
