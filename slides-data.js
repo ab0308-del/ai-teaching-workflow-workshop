@@ -15,10 +15,6 @@ window.WORKSHOP = {
       event: {name: "115學年度新北市教師會精進研習", session: "第一場", time: "11/25（三）14:00～16:00"},
       tagline: "帶您無痛上手 AI 工具，把繁瑣工作一鍵搞定，神隊友上線，準時下班不是夢！",
       meta: ["ChatGPT", "Gemini", "Gemini Notebook"],
-      actions: [
-        {label: "開啟操作筆記", resource: "notes"},
-        {label: "進入研習 Padlet", resource: "padlet", secondary: true}
-      ],
       notes: "開場：今天不比工具功能，而是帶走一套可以重複使用的工作方法。"
     },
     {
