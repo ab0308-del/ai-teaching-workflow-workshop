@@ -286,16 +286,6 @@ window.WORKSHOP = {
       notes: "示範分享連結與嵌入 Google Sites。"
     },
     {
-      type: "cards", tone: "gemini", mode: "✨ 最新補充", label: "GEMINI SKILLS", title: "Gemini 技能：把重複的工作交出去",
-      cards: [
-        {icon:"🔁", title:"取代過去的 Gem", text:"現在可以透過建立「技能」來取代過去的 Gem。"},
-        {icon:"📣", title:"需要時再呼叫", text:"將重複性的工作交由技能處理，需要時再進行呼叫。"},
-        {icon:"⏱️", title:"省下瑣碎時間", text:"有效節省處理瑣碎事務的時間。"}
-      ],
-      note: "對應投票題「重複性的工作」：一次設定好，之後一鍵叫用。",
-      notes: "最新補充。可回扣投票結果中的「重複性的工作」。"
-    },
-    {
       type: "flow5", tone: "gemini", label: "GEMINI WORKFLOW", title: "從研究到課堂應用的完整路徑",
       steps: [
         {title:"Deep Research", text:"蒐集並查核來源。"},
@@ -305,6 +295,16 @@ window.WORKSHOP = {
         {title:"課堂應用", text:"由教師決定如何使用。"}
       ],
       notes: "回顧 Gemini 整條路徑。"
+    },
+    {
+      type: "cards", tone: "gemini", mode: "✨ 最新補充", label: "GEMINI SKILLS", title: "Gemini 技能：把重複的工作交出去",
+      cards: [
+        {icon:"🔁", title:"取代過去的 Gem", text:"現在可以透過建立「技能」來取代過去的 Gem。"},
+        {icon:"📣", title:"需要時再呼叫", text:"將重複性的工作交由技能處理，需要時再進行呼叫。"},
+        {icon:"⏱️", title:"省下瑣碎時間", text:"有效節省處理瑣碎事務的時間。"}
+      ],
+      note: "對應投票題「重複性的工作」：一次設定好，之後一鍵叫用。",
+      notes: "最新補充。可回扣投票結果中的「重複性的工作」。"
     },
     {
       type: "chapter", tone: "notebook", label: "CHAPTER 03", title: "Gemini Notebook", subtitle: "來源導向的備課、評量與多模態學習",
