@@ -447,10 +447,6 @@ window.WORKSHOP = {
       type: "closing", tone: "hero", label: "YOUR NEXT MOVE", title: "帶走真正會再用的 AI 工作流",
       subtitle: "帶您無痛上手 AI 工具，把繁瑣工作一鍵搞定，神隊友上線，準時下班不是夢！",
       checklist: ["我選好一項真實任務", "我知道該找哪一位神隊友", "我會請 AI 先提問、再生成", "我完成至少一次教師查核"],
-      actions: [
-        {label:"開啟操作筆記", resource:"notes"},
-        {label:"前往 Padlet 分享", resource:"padlet", secondary:true}
-      ],
       notes: "最後請老師寫下自己下一次會使用的任務、資料來源與檢查方式，並在 Padlet 留言。"
     }
   ]
