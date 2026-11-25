@@ -12,6 +12,7 @@ tags: [handoff]
 已互換第 31、32 頁：第 31 頁為「從研究到課堂應用的完整路徑」，第 32 頁為「Gemini 技能：把重複的工作交出去」。確認其餘 46 頁內容與順序皆未更動。
 已移除第 48 頁結尾的「開啟操作筆記」與「前往 Padlet 分享」按鈕；保留頂端工具列與其他頁面。
 封面真人照片已換成 teacher-sprite.png 第一格的可愛卡通分身；app.js 僅替換封面圖片，styles.css 新增 cover-avatar 樣式。
+第一頁新增「生成式 AI 使用調查」QR Code 與可點擊連結，使用使用者提供的 Google 表單 viewform 網址；由既有 qrcode-generator 在瀏覽器產生 SVG，保留卡通分身。
 ## 進行中（做到哪一步、正在改哪個檔案）
 確認 GitHub Pages 自動部署結果。
 ## 下一步（下一個接手的 AI 第一件要做的事）
