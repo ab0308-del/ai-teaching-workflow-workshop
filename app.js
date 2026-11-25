@@ -5,6 +5,14 @@
   const pad = value => String(value).padStart(2, '0');
   const external = href => /^https?:/i.test(href) ? 'target="_blank" rel="noopener"' : '';
   const resourceHref = key => data.meta.resources[key] || '#';
+  const surveyUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeDoxqJMVt0Q9hFfUKchrkoUcvllSznZ-YcL7Qh4LoTjjfdVw/viewform';
+  const surveyCard = () => {
+    const qr = qrcode(0, 'M');
+    qr.addData(surveyUrl);
+    qr.make();
+    return `<a class="cover-survey" href="${surveyUrl}" target="_blank" rel="noopener" aria-label="填寫生成式 AI 使用調查"><span class="survey-qr" role="img" aria-label="生成式 AI 使用調查 QR Code">${qr.createSvgTag({cellSize:4, margin:16, scalable:true})}</span><span class="survey-copy"><strong>生成式 AI 使用調查</strong><span>請掃描 QR Code<br>或點此填寫</span></span></a>`;
+  };
+
   const brandInfo = {
     chatgpt: {label:'ChatGPT'},
     gemini: {label:'Gemini'},
@@ -31,7 +39,7 @@
 
   function renderSlide(slide, index) {
     if (slide.type === 'cover') {
-      return `<section class="slide cover active" data-title="${esc(slide.title)}" data-tone="hero"><div class="inner cover-grid"><div class="cover-copy">${slide.event ? `<p class="cover-event"><span>${esc(slide.event.name)}</span><b>${esc(slide.event.session)}</b><time>${esc(slide.event.time)}</time></p>` : ''}<p class="eyebrow">${esc(slide.label)}</p><h1>${esc(slide.title)}</h1><p class="cover-sub">${esc(slide.subtitle)}</p>${slide.tagline ? `<p class="cover-tagline">${esc(slide.tagline)}</p>` : ''}<div class="meta">${slide.meta.map(item => `<span>${esc(item)}</span>`).join('')}</div>${actions(slide.actions)}<p class="presenter">${esc(data.meta.presenter)}</p></div><div class="cover-visual"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="cover-avatar" role="img" aria-label="許凱琳老師的可愛卡通分身"></div><span class="spark s1">✦</span><span class="spark s2">✦</span></div></div></section>`;
+      return `<section class="slide cover active" data-title="${esc(slide.title)}" data-tone="hero"><div class="inner cover-grid"><div class="cover-copy">${slide.event ? `<p class="cover-event"><span>${esc(slide.event.name)}</span><b>${esc(slide.event.session)}</b><time>${esc(slide.event.time)}</time></p>` : ''}<p class="eyebrow">${esc(slide.label)}</p><h1>${esc(slide.title)}</h1><p class="cover-sub">${esc(slide.subtitle)}</p>${slide.tagline ? `<p class="cover-tagline">${esc(slide.tagline)}</p>` : ''}<div class="meta">${slide.meta.map(item => `<span>${esc(item)}</span>`).join('')}</div>${actions(slide.actions)}<p class="presenter">${esc(data.meta.presenter)}</p>${surveyCard()}</div><div class="cover-visual"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="cover-avatar" role="img" aria-label="許凱琳老師的可愛卡通分身"></div><span class="spark s1">✦</span><span class="spark s2">✦</span></div></div></section>`;
     }
     if (slide.type === 'profile') {
       return slideShell(slide, index, `<div class="profile-grid"><figure class="portrait-wrap"><img class="portrait" src="teacher.png" alt="許凱琳老師"><figcaption>教學現場 × AI 協作</figcaption></figure><div>${header(slide)}<p class="lead">${esc(slide.lead)}</p>${cards(slide.cards)}</div></div>`);
